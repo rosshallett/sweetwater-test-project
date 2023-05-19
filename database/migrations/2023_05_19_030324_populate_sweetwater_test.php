@@ -19,7 +19,7 @@ class PopulateSweetwaterTest extends Migration
         $date = new \DateTime('now');
 
         // Make the `shipdate_expected` fields valid datetime values so they will insert correctly
-        str_replace('0000-00-00 00:00:00', $date->format('Y-m-d H:i:s'), $contents);
+        $contents = str_replace('0000-00-00 00:00:00', $date->format('Y-m-d H:i:s'), $contents);
 
         DB::unprepared($contents);
     }
