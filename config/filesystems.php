@@ -42,6 +42,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'resources' => [
+            'driver' => 'local',
+            'root' => resource_path('sql'),
+            'visiblity' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
