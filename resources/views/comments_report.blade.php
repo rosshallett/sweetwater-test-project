@@ -8,6 +8,16 @@
 	</head>
 
 	<body>
-		<h1>Hi</h1>
+		<h1>Customer Comments:</h1>
+		<table id="customer_comments_table">
+			<tr>
+				<th>Start</th>
+			</tr>
+			@foreach ($data as $row)
+				<tr>
+					<td>{{ $row->orderid }}
+				</tr>
+			@endforeach
+		</table>
 	</body>
 </html>
