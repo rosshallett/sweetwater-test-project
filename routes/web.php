@@ -19,7 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/customer_comments', function() {
-    $all_rows = DB::table('sweetwater_test')->get();
 
     // Get rows related to call / don't call
     $call_me_rows = DB::table('sweetwater_test')->where('comments', 'like', '%call me%')->get();
