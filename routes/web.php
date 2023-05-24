@@ -24,13 +24,17 @@ Route::get('/customer_comments', function() {
     $call_me_rows = DB::table('sweetwater_test')->where('comments', 'like', '%call me%')->get();
 
     // Get rows related to who referred me
-    $referred_rows = DB::table('sweetwater_test')->where('comments', 'like', '%referred%')->get();
+    $referred_rows = DB::table('sweetwater_test')->where('comments', 'regexp', 'referred|referral')->get();
 
     // Get rows related to signatures
-    $signature_rows = DB::table('sweetwater_test')->where('comments', 'like', '%signature')->get();
+    $signature_rows = DB::table('sweetwater_test')->where('comments', 'like', '%signature%')->get();
 
+    // Get rows related to candy
+    $candy_filters = ['candy', 'smarties', 'honey', 'cinnanom'];
+    $candy_rows = DB::table('sweetwater_test')->where('comments', 'regexp', implode('|', $candy_filters))->get();
 
-    // $candy_filters = ['candy', 'smarties', 'honey', 'cinn'];
-    // $candy_comments = DB::table('sweetwater_test')->where('comments', );
-    return view('comments_report')->with('call_me_rows', $call_me_rows)->with('referred_rows', $referred_rows)->with('signature_rows', $signature_rows);
+    // Get all other rows
+    $misc_rows = DB::table('sweetwater_test')->whereRaw('comments not like "%call me%" and comments not regexp "referred|referral" and comments not like "%signature%" and comments not regexp "'.implode('|', $candy_filters).'"')->get();
+
+    return view('comments_report')->with('call_me_rows', $call_me_rows)->with('referred_rows', $referred_rows)->with('signature_rows', $signature_rows)->with('candy_rows', $candy_rows)->with('misc_rows', $misc_rows);
 });
