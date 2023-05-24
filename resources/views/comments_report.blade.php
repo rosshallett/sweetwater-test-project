@@ -6,6 +6,14 @@
 
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+		<style>
+			table, th, td {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+
+		</style>
+
 		<title>Customer Comments</title>
 	</head>
 
@@ -13,7 +21,7 @@
 		<h1>Customer Comments:</h1>
 		<table id="customer_comments_table">
 			<tr>
-				<th>'Call Me' Comments</th>
+				<th>'Call Me' Comments: {{ count($call_me_rows) }} rows</th>
 			</tr>
 			@foreach ($call_me_rows as $row)
 				<tr>
@@ -23,7 +31,7 @@
 				</tr>
 			@endforeach
 			<tr>
-				<th>'Referral' Comments</th>
+				<th>'Referral' Comments: {{ count($referred_rows) }} rows</th>
 			</tr>
 			@foreach ($referred_rows as $r_row)
 				<tr>
@@ -33,7 +41,7 @@
 				</tr>
 			@endforeach
 			<tr>
-				<th>'Signature' Comments</th>
+				<th>'Signature' Comments: {{ count($signature_rows) }} rows</th>
 			</tr>
 			@foreach ($signature_rows as $s_row)
 				<tr>
@@ -43,7 +51,7 @@
 				</tr>
 			@endforeach
 			<tr>
-				<th>'Candy' Comments</th>
+				<th>'Candy' Comments: {{ count($candy_rows) }} rows</th>
 			</tr>
 			@foreach ($candy_rows as $c_row)
 				<tr>
@@ -53,7 +61,7 @@
 				</tr>
 			@endforeach
 			<tr>
-				<th>'Miscellaneous' Comments</th>
+				<th>'Miscellaneous' Comments: {{ count($misc_rows) }} rows</th>
 			</tr>
 			@foreach ($misc_rows as $m_row)
 				<tr>
